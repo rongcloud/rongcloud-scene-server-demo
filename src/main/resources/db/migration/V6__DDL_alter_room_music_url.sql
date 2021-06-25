@@ -1,0 +1,1 @@
+alter table t_room_music MODIFY COLUMN url VARCHAR(1024);

@@ -1,0 +1,1 @@
+alter table t_room_music add sort int(5) NOT NULL default 0  COMMENT '排序';

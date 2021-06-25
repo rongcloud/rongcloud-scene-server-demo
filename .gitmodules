@@ -1,0 +1,3 @@
+[submodule "src/main/java/cn/rongcloud/common"]
+	path = src/main/java/cn/rongcloud/common
+	url = ssh://git@pha.rongcloud.net:2222/diffusion/127/sealdemo-common.git

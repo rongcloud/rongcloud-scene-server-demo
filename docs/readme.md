@@ -5,17 +5,17 @@
 ### 项目介绍
 
 * RongRTC-Server 基于 SpringBoot 框架实现
-* 依赖于 Mysql 数据存储、Redis 数据缓存 、flyway 数据库版本控制
+* 依赖于 Mysql 数据存储、Redis 数据缓存、flyway 数据库版本控制
 * 依赖于融云 IM 服务收发信令、依赖于融云短信服务收发短信
 
 ### 快速使用
 
-请参考 [快速使用](docs/quick_usage.md)
+请参考 [快速使用](quick_usage.md)
 
 ### 接口文档
 
-文档目录: ${path}/rongrtc-server/docs/apidoc/
+请参考 [接口文档](apidoc/index.html)
 
 ### 设计文档
 
-请参考 [设计文档](docs/design/design.md)
+请参考 [设计文档](design/design.md)
