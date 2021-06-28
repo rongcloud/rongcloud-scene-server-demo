@@ -34,7 +34,7 @@ spring:
 
 ## JWT 鉴权配置
 jwt:
-  secret: "ay9pL#$RongRTC"
+  secret: "ay9pL#$RC-RTC"
   ttlInMilliSec: -1
 
 ## 融云 IM 配置
@@ -60,8 +60,8 @@ redis:
   maxTotal: 300
   testOnBorrow: true
 
-## RongRTC 应用配置
-rongrtc:
+## RC RTC 应用配置
+rcrtc:
   domain: http://127.0.0.1 # RongRTC Server 地址，协议://域名:端口
   login:
     sms_verify: false #登录是否校验短信验证码

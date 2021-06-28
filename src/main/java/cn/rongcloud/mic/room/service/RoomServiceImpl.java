@@ -69,7 +69,7 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     UserService userService;
 
-    @Value("${rongrtc.filepath}")
+    @Value("${rcrtc.filepath}")
     private String filepath;
 
     @Autowired
@@ -99,16 +99,16 @@ public class RoomServiceImpl implements RoomService {
     @Resource(name = "redisTemplate")
     private SetOperations<String, String> setOperations;
 
-    @Value("${rongrtc.domain}")
+    @Value("${rcrtc.domain}")
     private String domain;
 
-    @Value("${rongrtc.mic.transfer_host_expire}")
+    @Value("${rcrtc.mic.transfer_host_expire}")
     private Long transferHostExpire;
 
-    @Value("${rongrtc.mic.takeover_host_expire}")
+    @Value("${rcrtc.mic.takeover_host_expire}")
     private Long takeoverHostExpire;
 
-    @Value("${rongrtc.room.expire}")
+    @Value("${rcrtc.room.expire}")
     private Integer roomExpire;
 
     @Override

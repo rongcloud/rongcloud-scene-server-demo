@@ -66,13 +66,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JwtTokenHelper jwtTokenHelper;
 
-    @Value("${rongrtc.login.sms_verify}")
+    @Value("${rcrtc.login.sms_verify}")
     private boolean loginSMSVerify;
 
     @Value("${sms.templateId}")
     private String smsTemplateId;
 
-//    @Value("${rongrtc.adminURL}")
+//    @Value("${rcrtc.adminURL}")
 //    private String adminUrl;
 
     @Resource
