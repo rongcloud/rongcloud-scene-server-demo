@@ -3,19 +3,19 @@
 ### 整体架构
 ![整体架构](assets/整体架构.png)
 
-RongRTC Server: 应用服务器，负责各种业务数据存储，比如用户、房间、背景音乐、APP版本
+RC RTC Server: 应用服务器，负责各种业务数据存储，比如用户、房间、背景音乐、APP版本
 
 IM 服务: 提供 IM 消息分发能力，维持与客户端的连接信息，提供聊天室、消息路由回调等功能
 
 RTC 服务: 提供语音消息能力
 
-## RongRTC Server
+## RC RTC Server
 
 ### 部署架构
 
 ![部署架构图](assets/structure.png)
 
-RongRTC Server 服务无状态，支持水平扩展，通过前置负载均衡实现分布式部署，提升系统吞吐
+RC RTC Server 服务无状态，支持水平扩展，通过前置负载均衡实现分布式部署，提升系统吞吐
 
 ### 技术栈
 * SpringBoot
@@ -145,16 +145,6 @@ t_room_music 表：存储房间背景音乐
 |sort|int|5 | | | 排序 |
 |create_dt|datetime|3| | |创建时间|
 |update_dt|datetime|3| | |更新时间|
-
-## client
-### 客户端进入房间流程
-![麦位场景交互](assets/创建聊天室流程.png)
-### 主持人上麦主要交互
-![麦位场景交互](assets/主持人RTC相关流程.png)
-### 抢麦流程
-![麦位场景交互](assets/抢麦流程.png)
-### 观众进入流程
-![麦位场景交互](assets/观众进入流程.png)
 
 ## 主要信令定义
 ### room 相关信令
