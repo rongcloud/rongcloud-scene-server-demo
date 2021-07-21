@@ -554,12 +554,16 @@ public class RoomServiceImpl implements RoomService {
         if (room == null) {
             return;
         }
+        log.info("[removeRoom][uid:" + room.getUid() + "][updateDate:" + room.getUpdateDt() + "]");
         //判断是否到达3个小时
         if (DateUtils.addHours(room.getUpdateDt(), roomExpire).compareTo(new Date()) > 0) {
             return;
         }
+        //从im服务器重新获取房间多少人员
+        this.getRoomMembers(room.getUid());
         //判断房间用户是否为0
         Integer total = this.getRoomUserTotal(room.getUid());
+        log.info("[removeRoom][uid:" + room.getUid() + "][member_total:" + total + "]");
         if (total.equals(0)) {
             //删除 房间
             this.chrmDelete(room.getUid());
@@ -612,24 +616,26 @@ public class RoomServiceImpl implements RoomService {
         if (room == null) {
             return RestResult.generic(RestResultCode.ERR_ROOM_NOT_EXIST);
         }
-        //从 IM 聊天室获取成员
-        IMChatRoomUserResult result = imHelper.queryChatroomUser(roomId, 50, 1);
-        if (result == null || !result.isSuccess() || result.getUsers() == null || result.getUsers().isEmpty()) {
-            return RestResult.success(outs);
-        }
-        List<IMRoomUserInfo> userInfos = result.getUsers();
-        for (IMRoomUserInfo roomUserInfo : userInfos) {
-            TUser user = userService.getUserInfo(roomUserInfo.getId());
-            if (user != null) {
-                RespRoomUser out = new RespRoomUser();
-                out.setUserId(user.getUid());
-                out.setUserName(user.getName());
-                out.setPortrait(user.getPortrait());
-                outs.add(out);
+        //TODO: 如果您正在使用开发环境的 AppKey，您的应用只能注册 100 名用户，达到上限后，将返回错误码 2007.
+        // 如果您需要更多的测试账户数量，您需要在应用配置中申请“增加测试人数”。
+        // 如果是生成环境记得 改成分页 重要、重要、重要。。。。
+        IMChatRoomUserResult result = imHelper.queryChatroomUser(roomId, 100, 1);
+        if (result != null && result.isSuccess() && result.getUsers() != null && result.getUsers().size() > 0) {
+            List<IMRoomUserInfo> userInfos = result.getUsers();
+            for (IMRoomUserInfo roomUserInfo : userInfos) {
+                TUser user = userService.getUserInfo(roomUserInfo.getId());
+                if (user != null) {
+                    RespRoomUser out = new RespRoomUser();
+                    out.setUserId(user.getUid());
+                    out.setUserName(user.getName());
+                    out.setPortrait(user.getPortrait());
+                    outs.add(out);
+                }
             }
         }
+
         //同步缓存人员
-        this.updateRoomUserTotal(roomId, outs.size());
+        this.updateRoomUserTotal(roomId, Integer.valueOf(result.getTotal().toString()));
         return RestResult.success(outs);
     }
 
