@@ -36,8 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -927,11 +925,6 @@ public class RoomServiceImpl implements RoomService {
         return CustomerConstant.SERVICENAME + "|user_gift|" + roomId;
     }
 
-
-    @PostConstruct
-    private void init() throws Exception {
-//       initChrmWhiteList();
-    }
 
     /**
      * 添加聊天室消息白名单

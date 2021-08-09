@@ -45,41 +45,41 @@ public class HttpHelper {
     @Autowired
     RCXFileProperties rcxFileProperties;
 
-    @PostConstruct
-    private void init() {
-        log.info("init HttpHelper");
-        try {
-            sslCtx = SSLContext.getInstance("TLS");
-            X509TrustManager tm = new X509TrustManager() {
-                @Override
-                public void checkClientTrusted(X509Certificate[] xcs, String string) {
-                }
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] xcs, String string) {
-                }
-
-                @Override
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-            };
-            sslCtx.init(null, new TrustManager[]{tm}, null);
-        } catch (Exception e) {
-            log.error("SSLContext exception:{}", e);
-        }
-
-        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-
-            @Override
-            public boolean verify(String arg0, SSLSession arg1) {
-                return true;
-            }
-
-        });
-
-        HttpsURLConnection.setDefaultSSLSocketFactory(sslCtx.getSocketFactory());
-    }
+//    @PostConstruct
+//    private void init() {
+//        log.info("init HttpHelper");
+//        try {
+//            sslCtx = SSLContext.getInstance("TLS");
+//            X509TrustManager tm = new X509TrustManager() {
+//                @Override
+//                public void checkClientTrusted(X509Certificate[] xcs, String string) {
+//                }
+//
+//                @Override
+//                public void checkServerTrusted(X509Certificate[] xcs, String string) {
+//                }
+//
+//                @Override
+//                public X509Certificate[] getAcceptedIssuers() {
+//                    return null;
+//                }
+//            };
+//            sslCtx.init(null, new TrustManager[]{tm}, null);
+//        } catch (Exception e) {
+//            log.error("SSLContext exception:{}", e);
+//        }
+//
+//        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+//
+//            @Override
+//            public boolean verify(String arg0, SSLSession arg1) {
+//                return true;
+//            }
+//
+//        });
+//
+//        HttpsURLConnection.setDefaultSSLSocketFactory(sslCtx.getSocketFactory());
+//    }
 
     public HttpURLConnection createGetHttpConnection(String uri) throws IOException {
         URL url = new URL(uri);

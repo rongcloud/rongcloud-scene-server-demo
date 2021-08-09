@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 public class FileController {
 
-    @Value("${rongrtc.filepath}")
+    @Value("${rcrtc.filepath}")
     private String filepath;
 
     /**
